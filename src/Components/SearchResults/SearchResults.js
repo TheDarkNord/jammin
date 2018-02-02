@@ -4,9 +4,10 @@ import { TrackList } from '../TrackList/TrackList';
 
 export class SearchResults extends React.Component {
   render() {
+    const tracks = (this.props.searchResult);
     return (
       <div className="SearchResults">
-        <TrackList tracks="this.props.searchResults"/>
+        <TrackList tracks={this.tracks} />
       </div>
     );
   }
