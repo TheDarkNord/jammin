@@ -7,7 +7,7 @@ export class Playlist extends React.Component {
     return (
       <div className="Playlist">
         <input defaultValue={`NEW PLAYLIST`} />
-        <TrackList />
+        <TrackList tracks={this.props.playlistTracks}/>
         <a className="Playlist-save">SAVE TO DEEZER</a>
       </div>
     )
