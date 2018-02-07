@@ -74,7 +74,6 @@ class App extends React.Component {
   }
 
   updatePlaylistName(newName){
-    const name = this.state.playlistName;
     this.setState({playlistName: newName});
   }
 
