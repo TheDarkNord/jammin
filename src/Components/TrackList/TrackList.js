@@ -5,13 +5,13 @@ import { Track } from '../Track/Track';
 
 export class TrackList extends React.Component {
   render() {
+    const tracks = this.props.tracks.map(track => {
+      return <Track track={track} key={track.id} onAdd={this.props.onAdd}/>
+    })
+
     return (
-      <div className="TrackList">
-        {
-          this.props.tracks.map(track => {
-            return <Track track={track} key={track.id} />
-        })
-        }
+      <div className="TrackList" onAdd={this.props.onAdd} onRemove={this.props.onRemove}>
+        {tracks}
       </div>
     );
   }
