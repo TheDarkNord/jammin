@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 
@@ -67,7 +67,8 @@ class App extends React.Component {
         console.log(tracklist[tracklistIndex].id)
         console.log(track.id)
       } else {
-        this.setState({playlistTracks: tracklist.push(track)})
+        tracklist.push(track);
+        this.setState({playlistTracks: tracklist})
       }
     }
   }
