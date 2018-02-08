@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './App.css';
 
 import { SearchBar } from '../SearchBar/SearchBar';
@@ -59,17 +58,19 @@ class App extends React.Component {
 
   addTrack(track){
     const tracklist = this.state.playlistTracks;
+    let shouldAdd = true;
     for (let tracklistIndex = 0; tracklistIndex < tracklist.length; tracklistIndex++){
       if (track.id === tracklist[tracklistIndex].id){
+        shouldAdd = false;
         alert('Track already in playlist');
         console.log(tracklist[tracklistIndex].id)
-        console.log(tracklist[tracklistIndex].id)
-        console.log(tracklist[tracklistIndex].id)
         console.log(track.id)
-      } else {
-        tracklist.push(track);
-        this.setState({playlistTracks: tracklist})
+        return
       }
+    }
+    if(shouldAdd === true) {
+      tracklist.push(track);
+      this.setState({playlistTracks: tracklist})
     }
   }
 
