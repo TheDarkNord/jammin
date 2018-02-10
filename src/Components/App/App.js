@@ -11,42 +11,8 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      playlistTracks: [{
-        id: '54',
-        artist: 'Metallica',
-        name: 'The Extacy of Gold',
-        album: 'S&M'
-      },
-      {
-        id: '654',
-        artist: 'Bring me the Horizon',
-        name: 'Doomed',
-        album: 'Live at the Albert Hall'
-      },
-      {
-        id: '9815',
-        artist: 'Don Broco',
-        name: 'Everybody',
-        album: 'Unknown'
-      }],
-      searchResults: [{
-        id: '1',
-        artist: 'Foo Fighters',
-        name: 'Rope',
-        album: 'Wasting light'
-      },
-      {
-        id: '54',
-        artist: 'Metallica',
-        name: 'The Extacy of Gold',
-        album: 'S&M'
-      },
-      {
-        id: '759',
-        artist: 'Roxette',
-        name: 'Joyride',
-        album: 'Tourism'
-      }],
+      playlistTracks: [],
+      searchResults: [],
       playlistName: 'New Playlist'
     };
     this.addTrack = this.addTrack.bind(this);
@@ -89,25 +55,14 @@ class App extends React.Component {
   }
 
   savePlaylist(){
-    const xhr = new XMLHttpRequest();
-    const apiKey = '';
-    const url = '';
-    const data = JSON.stringify({id: '200'});
-
-    xhr.responseType = 'json';
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        console.log(xhr.response);
-        //save playlist function.
-      }
-    };
-
-    xhr.open('POST', url);
-    xhr.send(data);
+    const trackURI = this.state.playlistTracks.map(trackURI =>{
+      return {trackID: trackURI}
+    })
+    return Deezer.savePlaylist(this.state.playlistName, trackURI);
   }
 
-  searchDeezer(userInput) {
-    return Deezer.search(userInput).then(trackList => {
+  searchDeezer(title, album, artist) {
+    return Deezer.searchDeezer(title, album, artist).then(trackList => {
       this.setState({searchResults: trackList})
     });
   }
