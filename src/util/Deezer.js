@@ -1,7 +1,7 @@
 const apiKey ='';
 const accessURL ="https://connect.deezer.com/oauth/auth.php?";
 //followed by app_id=
-const appID = '';
+const appID = '270422';
 //followed by &redirect_uri=
 const redirectURL = 'https://localhost:3000';
 //followed by &perms=
@@ -18,7 +18,7 @@ const data = JSON.stringify({id: '200'});
 
 export const Deezer = {
   getAccessToken(){
-    fetch(`https://connect.deezer.com/oauth/auth.php?app_id${appID}&redirect_uri=${redirectURL}&perms=${perms}`).then(response =>{
+    return fetch(`https://connect.deezer.com/oauth/auth.php?app_id${appID}&redirect_uri=${redirectURL}&perms=${perms}`).then(response =>{
       if(response.ok) {
         return response.json();
       }
@@ -26,11 +26,12 @@ export const Deezer = {
     }, networkError => console.log(networkError.message)
   ).then(jsonResponse => {
     //code to execute with jsonResponse
+    console.log(jsonResponse);
   });
   },
 
   searchDeezer(title, album, artis){
-      fetch(`https://api.deezer.com/search?q=${title}`).then(response =>{
+      return fetch(`https://api.deezer.com/search?q=${title}`).then(response =>{
         if(response.ok) {
           return response.json();
         }
@@ -38,11 +39,12 @@ export const Deezer = {
       }, networkError => console.log(networkError.message)
     ).then(jsonResponse => {
       //code to execute with jsonResponse
+      console.log(jsonResponse);
     });
   },
 
   savePlaylist(){
-    fetch('playlistURL', {
+    return fetch('playlistURL', {
       method: 'POST',
       headers: {'Content-type': "application/json"},
       body: JSON.stringify({playlistTitle: playlistTitle})
@@ -53,6 +55,7 @@ export const Deezer = {
     }, networkError => console.log(networkError.message)
   ).then(jsonResponse => {
     //Code to execute with jsonResponse
+    console.log(jsonResponse)
   });
   }
 }
