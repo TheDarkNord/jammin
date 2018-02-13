@@ -11,8 +11,42 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      playlistTracks: [],
-      searchResults: [],
+      playlistTracks: [{
+        id: 1,
+        title: 'Hello',
+        artist: 'Lucas Rossi',
+        album: 'Unknown'
+      },
+      {
+        id: 2,
+        title: 'Everybody',
+        artist: 'Don Broco',
+        album: 'Unknown'
+      },
+      {
+        id: 3,
+        title: 'Hello',
+        artist: 'Adelle',
+        album: '24'
+      },],
+      searchResults: [{
+        id: 17,
+        title: 'Doomed',
+        artist: 'Bring me the horizon',
+        album: 'Live at Albert Hall'
+      },
+      {
+        id: 87,
+        title: 'The Extacy of gold',
+        artist: 'Metallica',
+        album: 'S&M'
+      },
+      {
+        id: 3,
+        title: 'Hello',
+        artist: 'Adelle',
+        album: '24'
+      },],
       playlistName: 'New Playlist'
     };
     this.addTrack = this.addTrack.bind(this);
@@ -61,8 +95,8 @@ class App extends React.Component {
     return Deezer.savePlaylist(this.state.playlistName, trackURI);
   }
 
-  searchDeezer(title, album, artist) {
-    return Deezer.searchDeezer(title, album, artist).then(trackList => {
+  searchDeezer(title) {
+    return Deezer.searchDeezer(title).then(trackList => {
       this.setState({searchResults: trackList})
     });
   }

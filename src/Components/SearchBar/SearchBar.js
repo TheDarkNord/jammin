@@ -25,8 +25,7 @@ export class SearchBar extends React.Component{
   }
 
   handleSearch(event){
-    this.props.searchDeezer(this.state.title, this.state.album, this.state.artist);
-    event.preventDefault();
+    this.props.onSearch(this.state.title);
   }
 
   render(){
