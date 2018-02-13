@@ -1,6 +1,6 @@
-const apiKey ='0ef14a2cc1c2c6f1aaf66eb02d181aa8';
+const apiKey ='';
 //followed by app_id=
-const appID = '270422';
+const appID = '';
 //followed by &redirect_uri=
 const redirectURL = 'https://localhost:3000';
 //followed by &perms=
