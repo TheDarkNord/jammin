@@ -1,11 +1,9 @@
-const apiKey ='';
-//followed by app_id=
+const apiKey ='0ef14a2cc1c2c6f1aaf66eb02d181aa8';
+let code;
 const appID = '';
-//followed by &redirect_uri=
 const redirectURL = 'https://localhost:3000';
-//followed by &perms=
 const perms = 'manage_library';
-//followed by .email
+
 let accessToken;
 
 const search = '';
@@ -17,61 +15,39 @@ const playlistURL ="https://api.deezer.com/playlist/" + playlistTitle;
 const data = JSON.stringify({id: '200'});
 
 export const Deezer = {
-  getAccessToken(){
-    return fetch(`https://connect.deezer.com/oauth/auth.php?app_id${appID}&redirect_uri=${redirectURL}&perms=${perms}.email&key=${apiKey}`).then(response =>{
-      if(response.ok) {
-        return response.json();
-      }
-      throw new Error('Request failed!');
-    }, networkError => console.log(networkError.message)
-  ).then(jsonResponse => {
-    accessToken = jsonResponse;
-    console.log(jsonResponse);
-  });
-  },
-
   searchDeezer(title) {
-      return fetch(`https://api.deezer.com/search?q=track:${title}`).then(response =>{
-        if(response.ok) {
-          return response.json();
-        }
-        throw new Error('Request failed!');
-      }, networkError => console.log(networkError.message)
-    ).then(jsonResponse => {
-      if(jsonResponse.title){
-        return jsonResponse.title.map(playlistTrack => ({
-      //   id: track.id,
-      //   title: track.title,
-      //   link: track.link,
-      //   artist: track.artist,
-      //   album: track.albume
-      }));
-      console.log(jsonResponse);
-      }
-    }
-  )
+    // var Deezer = require('deezer-node-api');
+    // var dz = new Deezer();
+    // var track = title;
+    // console.log(title);
+
+    //Codecademy method for asynchronous requests, combined with node plugin. returns undifined
+
+    // const search = async function(){
+    //   try{
+    //     let response = await dz.findTracks(track).then(function(result){
+    //       return result
+    //     });
+    //     if(response.ok){
+    //       let jsonResponse = await response.json();
+    //       console.log(jsonResponse);
+    //     }
+    //   } catch(error){
+    //     console.log(error);
+    //   }
+    // }
+    // console.log(search());
+
+
+    //node plugin request method
+
+    // return dz.findTracks(title).then(function(result){
+    // console.log(result);
+    // return result;
+    // });
+
 },
 
   savePlaylist(playlistName, tracks){
-    return fetch('playlistURL', {
-      method: 'POST',
-      headers: {'Content-type': "application/json"},
-      body: JSON.stringify({playlistTitle: playlistTitle})
-    }).then(response => {
-      if (response.ok) {
-        return response.json();
-      } throw new Error('Request failed!');
-    }, networkError => console.log(networkError.message)
-  ).then(jsonResponse => {
-    // return playlist/title= ${playlistName},
-    // tracks: {
-      // id: ${track.id},
-      // title: ${track.title},
-      // link: ${track.link},
-      // artist: ${track.artist},
-      // album: ${track.album}
-    // }
-    console.log(jsonResponse)
-  });
   }
 }

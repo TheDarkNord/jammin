@@ -11,42 +11,8 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      playlistTracks: [{
-        id: 1,
-        title: 'Hello',
-        artist: 'Lucas Rossi',
-        album: 'Unknown'
-      },
-      {
-        id: 2,
-        title: 'Everybody',
-        artist: 'Don Broco',
-        album: 'Unknown'
-      },
-      {
-        id: 3,
-        title: 'Hello',
-        artist: 'Adelle',
-        album: '24'
-      },],
-      searchResults: [{
-        id: 17,
-        title: 'Doomed',
-        artist: 'Bring me the horizon',
-        album: 'Live at Albert Hall'
-      },
-      {
-        id: 87,
-        title: 'The Extacy of gold',
-        artist: 'Metallica',
-        album: 'S&M'
-      },
-      {
-        id: 3,
-        title: 'Hello',
-        artist: 'Adelle',
-        album: '24'
-      },],
+      playlistTracks: [],
+      searchResults: [],
       playlistName: 'New Playlist'
     };
     this.addTrack = this.addTrack.bind(this);
@@ -96,9 +62,33 @@ class App extends React.Component {
   }
 
   searchDeezer(title) {
-    return Deezer.searchDeezer(title).then(trackList => {
-      this.setState({searchResults: trackList})
+    // Deezer.searchDeezer(title);
+    var Deezer = require('deezer-node-api');
+    var dz = new Deezer();
+    var track = title;
+    console.log(track);
+    let response;
+
+
+    //When called in Deezer.js, the response is a promise, due to asynchronous operation
+    return dz.findTracks(track).then(function(result){
+    let response = result;
+    console.log(response.data);
+    response = response.data;
     });
+
+
+    //
+    //Setting state creates a map error due to playlist awaiting results.
+
+    // this.setState({searchResults: function() {
+    //   return dz.findTracks(track).then(function(result){
+    //     let response = result;
+    //     console.log(response.data);
+    //     response = response.data;
+    //     });
+    //   }
+    // });
   }
 
   render() {
@@ -110,6 +100,10 @@ class App extends React.Component {
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist}/>
+          </div>
+          <div>
+            <p>Powered by:</p>
+            <div className="deezerLogo"/>
           </div>
         </div>
       </div>

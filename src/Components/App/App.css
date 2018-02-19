@@ -44,6 +44,15 @@ h2 {
   width: 100%;
 }
 
+.deezerLogo {
+  height: 120px;
+  width: 250px;
+  background-Image: url('./DZ_Logo_CMYK.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;

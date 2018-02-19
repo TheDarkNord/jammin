@@ -5,7 +5,7 @@ export class SearchBar extends React.Component{
   constructor(props){
     super(props);
     this.state= {
-      title: '',
+      track: '',
       album: '',
       artist: ''
     };
@@ -25,7 +25,7 @@ export class SearchBar extends React.Component{
   }
 
   handleSearch(event){
-    this.props.onSearch(this.state.title);
+    this.props.onSearch(this.state.track);
   }
 
   render(){
