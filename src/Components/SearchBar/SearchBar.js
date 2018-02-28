@@ -20,8 +20,6 @@ export class SearchBar extends React.Component{
 
   handleTermChange(event){
     this.setState({track: event.target.value})
-    this.setState({album: event.target.value})
-    this.setState({artist: event.target.value})
   }
 
   handleSearch(event){
