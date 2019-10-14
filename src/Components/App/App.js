@@ -63,14 +63,13 @@ class App extends React.Component {
 
   searchSpotify(title){
     const result = Spotify.search(title);
-    if(result !== undefined){
-      this.setState({searchResults: result});
-    } else {
-      console.log(result);
-    }
+    console.log("Returned: ", result);
+    this.setState({searchResults : result});
+    console.log(this.state);
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>

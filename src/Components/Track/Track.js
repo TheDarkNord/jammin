@@ -27,6 +27,7 @@ export class Track extends React.Component {
   }
 
   render() {
+    console.log(this.props.track);
     return (
       <div className="Track">
         <div className="Track-information">
