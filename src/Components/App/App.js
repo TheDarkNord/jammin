@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   searchSpotify(title){
-    const result = Spotify.searchSpotify(title);
+    const result = Spotify.search(title);
     if(result !== undefined){
       this.setState({searchResults: result});
     } else {
