@@ -65,11 +65,9 @@ class App extends React.Component {
     const result = Spotify.search(title);
     console.log("Returned: ", result);
     this.setState({searchResults : result});
-    console.log(this.state);
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
